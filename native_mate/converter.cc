@@ -8,6 +8,9 @@
 #include "v8/include/v8.h"
 
 using v8::Array;
+using v8::ArrayBuffer;
+using v8::Uint8Array;
+using v8::Uint8ClampedArray;
 using v8::Boolean;
 using v8::External;
 using v8::Function;
@@ -207,6 +210,48 @@ bool Converter<Local<Array> >::FromV8(Isolate* isolate,
   if (!val->IsArray())
     return false;
   *out = Local<Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<ArrayBuffer> >::ToV8(Isolate* isolate,
+                                            Local<ArrayBuffer> val) {
+  return val;
+}
+
+bool Converter<Local<ArrayBuffer> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<ArrayBuffer>* out) {
+  if (!val->IsArrayBuffer())
+    return false;
+  *out = Local<ArrayBuffer>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Uint8Array> >::ToV8(Isolate* isolate,
+                                            Local<Uint8Array> val) {
+  return val;
+}
+
+bool Converter<Local<Uint8Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Uint8Array>* out) {
+  if (!val->IsUint8Array())
+    return false;
+  *out = Local<Uint8Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Uint8ClampedArray> >::ToV8(Isolate* isolate,
+                                            Local<Uint8ClampedArray> val) {
+  return val;
+}
+
+bool Converter<Local<Uint8ClampedArray> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Uint8ClampedArray>* out) {
+  if (!val->IsUint8ClampedArray())
+    return false;
+  *out = Local<Uint8ClampedArray>::Cast(val);
   return true;
 }
 

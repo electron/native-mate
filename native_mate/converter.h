@@ -166,6 +166,33 @@ struct Converter<v8::Local<v8::Array> > {
 };
 
 template<>
+struct Converter<v8::Local<v8::ArrayBuffer> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::ArrayBuffer> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::ArrayBuffer>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Uint8Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Uint8Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Uint8Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Uint8ClampedArray> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Uint8ClampedArray> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Uint8ClampedArray>* out);
+};
+
+template<>
 struct Converter<v8::Local<v8::Value> > {
   static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
                                     v8::Local<v8::Value> val);
