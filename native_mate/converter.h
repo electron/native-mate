@@ -193,6 +193,69 @@ struct Converter<v8::Local<v8::Uint8ClampedArray> > {
 };
 
 template<>
+struct Converter<v8::Local<v8::Int8Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Int8Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Int8Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Int16Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Int16Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Int16Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Uint16Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Uint16Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Uint16Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Int32Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Int32Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Int32Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Uint32Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Uint32Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Uint32Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Float32Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Float32Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Float32Array>* out);
+};
+
+template<>
+struct Converter<v8::Local<v8::Float64Array> > {
+  static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
+                                    v8::Local<v8::Float64Array> val);
+  static bool FromV8(v8::Isolate* isolate,
+                     v8::Local<v8::Value> val,
+                     v8::Local<v8::Float64Array>* out);
+};
+
+template<>
 struct Converter<v8::Local<v8::Value> > {
   static v8::Local<v8::Value> ToV8(v8::Isolate* isolate,
                                     v8::Local<v8::Value> val);

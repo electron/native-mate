@@ -11,6 +11,13 @@ using v8::Array;
 using v8::ArrayBuffer;
 using v8::Uint8Array;
 using v8::Uint8ClampedArray;
+using v8::Int8Array;
+using v8::Int16Array;
+using v8::Uint16Array;
+using v8::Int32Array;
+using v8::Uint32Array;
+using v8::Float32Array;
+using v8::Float64Array;
 using v8::Boolean;
 using v8::External;
 using v8::Function;
@@ -252,6 +259,104 @@ bool Converter<Local<Uint8ClampedArray> >::FromV8(Isolate* isolate,
   if (!val->IsUint8ClampedArray())
     return false;
   *out = Local<Uint8ClampedArray>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Int8Array> >::ToV8(Isolate* isolate,
+                                            Local<Int8Array> val) {
+  return val;
+}
+
+bool Converter<Local<Int8Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Int8Array>* out) {
+  if (!val->IsInt8Array())
+    return false;
+  *out = Local<Int8Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Int16Array> >::ToV8(Isolate* isolate,
+                                            Local<Int16Array> val) {
+  return val;
+}
+
+bool Converter<Local<Int16Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Int16Array>* out) {
+  if (!val->IsInt16Array())
+    return false;
+  *out = Local<Int16Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Uint16Array> >::ToV8(Isolate* isolate,
+                                            Local<Uint16Array> val) {
+  return val;
+}
+
+bool Converter<Local<Uint16Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Uint16Array>* out) {
+  if (!val->IsUint16Array())
+    return false;
+  *out = Local<Uint16Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Int32Array> >::ToV8(Isolate* isolate,
+                                            Local<Int32Array> val) {
+  return val;
+}
+
+bool Converter<Local<Int32Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Int32Array>* out) {
+  if (!val->IsInt32Array())
+    return false;
+  *out = Local<Int32Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Uint32Array> >::ToV8(Isolate* isolate,
+                                            Local<Uint32Array> val) {
+  return val;
+}
+
+bool Converter<Local<Uint32Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Uint32Array>* out) {
+  if (!val->IsUint32Array())
+    return false;
+  *out = Local<Uint32Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Float32Array> >::ToV8(Isolate* isolate,
+                                            Local<Float32Array> val) {
+  return val;
+}
+
+bool Converter<Local<Float32Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Float32Array>* out) {
+  if (!val->IsFloat32Array())
+    return false;
+  *out = Local<Float32Array>::Cast(val);
+  return true;
+}
+
+Local<Value> Converter<Local<Float64Array> >::ToV8(Isolate* isolate,
+                                            Local<Float64Array> val) {
+  return val;
+}
+
+bool Converter<Local<Float64Array> >::FromV8(Isolate* isolate,
+                                      v8::Local<Value> val,
+                                      Local<Float64Array>* out) {
+  if (!val->IsFloat64Array())
+    return false;
+  *out = Local<Float64Array>::Cast(val);
   return true;
 }
 
