@@ -6,6 +6,7 @@
 #define NATIVE_MATE_PROMISE_H_
 
 #include "native_mate/converter.h"
+#include "native_mate/scoped_persistent.h"
 
 namespace mate {
 
@@ -19,17 +20,18 @@ class Promise {
   static Promise Create();
 
   v8::Isolate* isolate() const { return isolate_; }
+  bool IsEmpty() const { return isolate() == NULL; }
 
-  virtual v8::Local<v8::Object> GetHandle() const;
+  virtual v8::Local<v8::Promise::Resolver> GetHandle() const;
 
   template<typename T>
   void Resolve(T* value) {
-    resolver_->Resolve(mate::ConvertToV8(isolate(), value));
+    GetHandle()->Resolve(mate::ConvertToV8(isolate(), value));
   }
 
   template<typename T>
   void Reject(T* value) {
-    resolver_->Reject(mate::ConvertToV8(isolate(), value));
+    GetHandle()->Reject(mate::ConvertToV8(isolate(), value));
   }
 
   void RejectWithErrorMessage(const std::string& error);
@@ -38,7 +40,7 @@ class Promise {
   v8::Isolate* isolate_;
 
  private:
-  v8::Local<v8::Promise::Resolver> resolver_;
+  scoped_refptr<RefCountedPersistent<v8::Promise::Resolver>> handle_;
 };
 
 template<>
